@@ -167,12 +167,25 @@ def isValidWord(word, hand, wordList):
     composed of letters in the hand. Otherwise, returns False.
 
     Does not mutate hand or wordList.
-   
+
     word: string
     hand: dictionary (string -> int)
     wordList: list of lowercase strings
     """
-    # TO DO ... <-- Remove this comment when you code this function
+    tempHand = hand.copy()
+
+    if word == '' or word not in wordList:
+        return False
+
+    for let in word:
+        if let in tempHand:
+            tempHand[let] = tempHand[let] - 1
+            if tempHand[let] < 0:
+                return False
+        else:
+            return False
+
+    return True
 
 
 #
@@ -186,7 +199,10 @@ def calculateHandlen(hand):
     hand: dictionary (string-> int)
     returns: integer
     """
-    # TO DO... <-- Remove this comment when you code this function
+    total = 0
+    for k in hand:
+        total += hand[k]
+    return total
 
 
 
